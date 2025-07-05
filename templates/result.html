@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Info Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="card" data-aos="zoom-in">
+        <div class="text-center">
+        
+            <img src="{{ user.avatar_url }}" width="150" height="150" alt="Avatar">
+
+            
+            <h2 class="mt-3">{{ user.name or user.login }}</h2>
+
+            
+            <div class="mt-2">
+                <a href="https://github.com/{{ user.login }}" target="_blank" title="View GitHub Profile">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                         alt="GitHub Icon" width="40" height="40">
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="mt-4">
+            {% if choice == 'account' %}
+                <p><strong>Company:</strong> {{ user.company }}</p>
+                <p><strong>Bio:</strong> {{ user.bio }}</p>
+                <p><strong>Location:</strong> {{ user.location }}</p>
+
+            {% elif choice == 'repos' %}
+                <h4>Repositories:</h4>
+                <ul>
+                    {% for repo in repos %}
+                        <li>{{ repo.name }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% elif choice == 'followers' %}
+                <h4>Followers:</h4>
+                <ul>
+                    {% for follower in followers %}
+                        <li>{{ follower.login }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% elif choice == 'following' %}
+                <h4>Following:</h4>
+                <ul>
+                    {% for follow in following %}
+                        <li>{{ follow.login }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-primary">Back</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+</body>
+</html>
+>
