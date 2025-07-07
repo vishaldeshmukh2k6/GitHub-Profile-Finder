@@ -79,6 +79,8 @@ li {
 .card a img {
     transition: transform 0.3s ease;
 }
+
+
 .card a img:hover {
     transform: scale(1.2);
 }
